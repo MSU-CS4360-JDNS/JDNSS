@@ -423,7 +423,6 @@ class Parser {
         final int protocol = getInt("protocol");
         Assertion.aver(protocol == 3);
         final int algorithm = getInt("algorithm");
-        getLeftParen();
 
         String publicKey = "";
         inBase64 = true;
@@ -432,8 +431,6 @@ class Parser {
             publicKey += stringValue;
         }
         inBase64 = false;
-
-        Assertion.aver(tok == RRCode.RPAREN);
 
         zone.add(currentName,
                 new DNSKEYRR(currentName, currentTTL, flags, protocol,
